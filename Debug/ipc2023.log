@@ -1,6 +1,5 @@
-﻿  CNILayer.cpp
-E:\MFC_ChattingProgram\CNILayer.cpp(6,1): warning C4005: 'BPF_MAJOR_VERSION': 매크로 재정의
-C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Include\pcap\bpf.h(109,1): message : 'BPF_MAJOR_VERSION'의 이전 정의를 참조하십시오.
+﻿  ipc2023Dlg.cpp
+E:\MFC_ChattingProgram\ipc2023Dlg.cpp(411,1): warning C4002: 함수 같은 매크로 호출 '_T'에 대해 인수가 너무 많습니다.
   라이브러리를 검색하고 있습니다.
       C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
   라이브러리가 검색되었습니다.

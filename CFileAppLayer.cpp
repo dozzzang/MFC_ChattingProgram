@@ -61,7 +61,7 @@ UINT CFileAppLayer::F_Send(LPVOID Fileobj) {
     DWORD dwFileSize = GetFileSize(hFile, NULL);
 
     if (FApplayer->p_Progress) {
-        FApplayer->p_Progress->SetRange(0, dwFileSize);
+        FApplayer->p_Progress->SetRange(0, dwFileSize / FAPP_DATA_SIZE); //오류발생~~!
     }
 
     if (dwFileSize <= FAPP_DATA_SIZE) {
