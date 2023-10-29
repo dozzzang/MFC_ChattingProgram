@@ -10,7 +10,7 @@ class CNILayer :
 public:
 
     BOOL Send(unsigned char* payload, int length);
-    BOOL Receive();
+    BOOL Receive(unsigned char* packet);
 
     CNILayer(char* pName);
     virtual ~CNILayer();
@@ -28,6 +28,10 @@ public:
 
     std::vector<NetworkDevice>* GetDevicesList();
     void StartReceive(char* adapterName);
+    void SetThreadloop();
+    static UINT ReadingThread(LPVOID pParam);
+    CWinThread* m_pThread;
+    bool m_isWorkingThread;
 
 
 private:
@@ -36,6 +40,5 @@ private:
     void PopulateDeviceList();
     std::vector<NetworkDevice> devicesList;
     pcap_t* _adapter;
-    static UINT ReadingThread(LPDWORD lpdwParam);
 };
 

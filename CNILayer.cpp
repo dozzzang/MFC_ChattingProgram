@@ -123,43 +123,45 @@ void CNILayer::StartReceive(char* adapterName)
 
     _adapter = handle;
 
-    DWORD threadId;
-    DWORD_PTR thisPtrAsDwordPtr = reinterpret_cast<DWORD_PTR>(this); // this      ͸  DWORD_PTR   ĳ    
-    HANDLE hThread = ::CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ReadingThread, (LPVOID)thisPtrAsDwordPtr, 0, &threadId);
 }
 
-BOOL CNILayer::Receive()
+BOOL CNILayer::Receive(unsigned char* packet)
+{
+    return this->GetUpperLayer(0)->Receive(packet);
+}
+
+
+UINT CNILayer::ReadingThread(LPVOID pParam)
 {
     pcap_pkthdr* packetHeader;
     u_char* packet;
-    int code = pcap_next_ex(_adapter, &packetHeader, (const u_char**)&packet);
-    switch (code)
+    CNILayer* NIlayer = (CNILayer*)pParam;
+
+    int code = 1;
+    while (NIlayer->m_isWorkingThread)
     {
+        code = pcap_next_ex(NIlayer->_adapter, &packetHeader, (const u_char**)&packet);
+        switch (code)
+        {
         case 1:
             break;
         case PCAP_ERROR:
-            AfxMessageBox(pcap_geterr(_adapter));
+            AfxMessageBox(pcap_geterr(NIlayer->_adapter));
 #ifdef DEBUG
             DebugBreak();
 #endif
         case 0:
         default:
             return false;
-    }
+        }
+        NIlayer->Receive(packet);
+        Sleep(30);
 
-    return this->GetUpperLayer(0)->Receive(packet);
+        //Do something...
+    }
+    return 0;
 }
 
-
-UINT CNILayer::ReadingThread(LPDWORD lpdwParam)
-{
-    CNILayer* thisPtr = reinterpret_cast<CNILayer*>(lpdwParam); // LPDWORD�� CNILayer �����ͷ� ĳ����
-    assert(thisPtr->_adapter);
-
-    while (true)
-    {
-        thisPtr->Receive();
-    }
-
-    return 0;
+void CNILayer::SetThreadloop() {
+    m_isWorkingThread = true;
 }

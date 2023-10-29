@@ -413,7 +413,7 @@ void Cipc2023Dlg::OnBnClickedButtonAddr()
 
 		return;
 	}
-
+	m_Link->SetThreadloop(); // for Thread loop bool var initializing
 	if (m_bSendReady) {
 		SetDlgState(IPC_ADDR_RESET);
 		SetDlgState(IPC_INITIALIZING);
@@ -437,7 +437,11 @@ void Cipc2023Dlg::OnBnClickedButtonAddr()
 		auto networkInterface = (CNILayer*)m_LayerMgr.GetLayer("Link");
 		auto currentSelection = deviceComboBox.GetCurSel();
 		char* deviceId = (char*)deviceComboBox.GetItemDataPtr(currentSelection);
+
+
 		networkInterface->StartReceive(deviceId);
+		AfxBeginThread(m_Link->ReadingThread, m_Link);
+		
 		SetDlgState(IPC_ADDR_SET);
 		SetDlgState(IPC_READYTOSEND);
 	}
@@ -512,7 +516,7 @@ void Cipc2023Dlg::OnBnClickedButtonAddfile()
 
 void Cipc2023Dlg::OnClickedButtonSendfile()
 {
-	//preprocessing
+	//begin Thread
 	AfxBeginThread(m_File->F_Send, m_File);
 }
 
