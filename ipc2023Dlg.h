@@ -92,6 +92,7 @@ public:
 	CListBox m_ListChat;
 	CString	m_Filepath;
 	CProgressCtrl m_Progress;//progress bar
+	CString m_strFilter = _T("All Files(*.*)|*.*|"); // 파일 확장자 지정
 	afx_msg void OnBnClickedCheckToall();
 	// The combobox containing available device list
 	CComboBox deviceComboBox;

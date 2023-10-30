@@ -490,6 +490,7 @@ void Cipc2023Dlg::OnClickedJpg()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	((CButton*)GetDlgItem(txt))->SetCheck(0);
+	 m_strFilter = _T("JPEG Files (*.jpg)|*.jpg||");
 }
 
 
@@ -497,6 +498,7 @@ void Cipc2023Dlg::OnClickedTxt()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	((CButton*)GetDlgItem(jpg))->SetCheck(0);
+	 m_strFilter = _T("Text Files (*.txt)|*.txt||");
 }
 
 
@@ -504,7 +506,7 @@ void Cipc2023Dlg::OnBnClickedButtonAddfile()
 {
 	UpdateData(TRUE);
 
-	CFileDialog dlg(true, _T("*.*"), NULL, OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST, _T("All Files(*.*)|*.*|"), NULL);
+	CFileDialog dlg(true, NULL, NULL, OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST, m_strFilter, NULL);
 	if (dlg.DoModal() == IDOK)
 	{
 		m_Filepath = dlg.GetPathName();	//IDC_EDIT_FilePath컨트롤의 멤버변수
@@ -515,7 +517,8 @@ void Cipc2023Dlg::OnBnClickedButtonAddfile()
 
 
 void Cipc2023Dlg::OnClickedButtonSendfile()
-{
+{	
+	m_Progress.SetPos(0);
 	//begin Thread
 	AfxBeginThread(m_File->F_Sendthr, m_File);
 }
