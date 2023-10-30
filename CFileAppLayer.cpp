@@ -72,6 +72,7 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
     FApplayer->m_sHeader.fapp_type = DATA_TYPE_BEGIN;
     FApplayer->m_sHeader.fapp_seq_num = 0;
     FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->filename), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
+    Sleep(30);
     FApplayer->p_Progress->SetPos(dwFileSize / FAPP_DATA_SIZE); // 송신과정 6
 
     if (dwFileSize <= FAPP_DATA_SIZE) { //송신과정 2
@@ -83,6 +84,7 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
        //real send
        FApplayer->bSEND = FALSE;
        FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->m_sHeader), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
+       Sleep(30);
     }
     else {
         DoFragmentation_f(FApplayer, hFile, dwFileSize); //송신과정 5
@@ -114,6 +116,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
                 //real send
                 FileApplayer->bSEND = FALSE;
                 FileApplayer->bSEND = FileApplayer->Send((unsigned char*)&(FileApplayer->m_sHeader), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
+                Sleep(30);
                 //continue to work
                 sent_size += dwWrite;
                 FileApplayer->p_Progress->SetPos(seq);  //송신과정 6
