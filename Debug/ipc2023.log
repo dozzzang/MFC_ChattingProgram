@@ -1,5 +1,8 @@
 ﻿  CFileAppLayer.cpp
 E:\MFC_ChattingProgram\CFileAppLayer.cpp(67,55): warning C4244: '인수': 'DWORD'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 E:\MFC_ChattingProgram\CFileAppLayer.cpp(51,24): warning C4101: 'dwRead' :참조되지 않은 지역 변수입니다.
-E:\MFC_ChattingProgram\CFileAppLayer.cpp(97,24): warning C4101: 'dwRead' :참조되지 않은 지역 변수입니다.
+E:\MFC_ChattingProgram\CFileAppLayer.cpp(98,24): warning C4101: 'dwRead' :참조되지 않은 지역 변수입니다.
+  라이브러리를 검색하고 있습니다.
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
+  라이브러리가 검색되었습니다.
   ipc2023.vcxproj -> E:\MFC_ChattingProgram\Debug\ipc2023.exe

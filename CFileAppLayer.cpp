@@ -71,7 +71,8 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
     FApplayer->m_sHeader.fapp_totlen = (unsigned long)dwFileSize;
     FApplayer->m_sHeader.fapp_type = DATA_TYPE_BEGIN;
     FApplayer->m_sHeader.fapp_seq_num = 0;
-    FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->filename), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
+    memcpy(FApplayer->m_sHeader.fapp_data,FApplayer->filename, copyLength); //파일명 못받는 오류해결
+    FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->m_sHeader), 12 + copyLength);
     Sleep(30);
     FApplayer->p_Progress->SetPos(dwFileSize / FAPP_DATA_SIZE); // 송신과정 6
 
