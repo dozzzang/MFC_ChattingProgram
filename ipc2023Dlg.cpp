@@ -82,7 +82,7 @@ Cipc2023Dlg::Cipc2023Dlg(CWnd* pParent /*=nullptr*/)
 
 	// 레이어를 연결한다. (레이어 생성)
 	// 수업 PPT p.30 참고.
-	m_LayerMgr.ConnectLayers("Link ( *Ethernet ( *ChatApp ( *ChatDlg ) * FileApp ( *ChatDlg ) ) )");
+	m_LayerMgr.ConnectLayers("Link ( *Ethernet ( *ChatApp ( *ChatDlg ) *FileApp ( *ChatDlg ) ) )");	//FileApp 링크 오류수정
 
 	m_ChatApp = (CChatAppLayer*)m_LayerMgr.GetLayer("ChatApp");
 	m_Link = (CNILayer*)m_LayerMgr.GetLayer("Link");

@@ -45,7 +45,7 @@ void CFileAppLayer::SetFilepath(CString Path) {
 void CFileAppLayer::SetProgressCtrl(CProgressCtrl* p) {
     p_Progress = p;
 }
-UINT CFileAppLayer::F_Send(LPVOID Fileobj) {
+UINT CFileAppLayer::F_Send(LPVOID Fileobj) {            //file name?
     /*Perform file preprocessing before being passed to the layer
       @param Fileobj
       @return 1 (for successful quit)*/
@@ -95,7 +95,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
         DWORD dwToRead = min(FAPP_DATA_SIZE, total_size - sent_size);
 
             if (ReadFile(hfile, buffer, dwToRead, &dwWrite, NULL) && dwWrite > 0) {
-                FileApplayer->m_sHeader.fapp_totlen = (unsigned long)dwWrite;
+                FileApplayer->m_sHeader.fapp_totlen = (unsigned long)total_size;
 
                 if (sent_size == 0)
                     FileApplayer->m_sHeader.fapp_type = DATA_TYPE_BEGIN;    //set 0x00
