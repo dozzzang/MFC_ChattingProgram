@@ -1,5 +1,242 @@
 ﻿  CFileAppLayer.cpp
 E:\MFC_ChattingProgram\CFileAppLayer.cpp(67,55): warning C4244: '인수': 'DWORD'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 E:\MFC_ChattingProgram\CFileAppLayer.cpp(51,24): warning C4101: 'dwRead' :참조되지 않은 지역 변수입니다.
-E:\MFC_ChattingProgram\CFileAppLayer.cpp(97,24): warning C4101: 'dwRead' :참조되지 않은 지역 변수입니다.
+E:\MFC_ChattingProgram\CFileAppLayer.cpp(95,24): warning C4101: 'dwRead' :참조되지 않은 지역 변수입니다.
+  
+  라이브러리를 검색하고 있습니다.
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\packet.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\Delayimp.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\nafxcwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcmtd.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\kernel32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\user32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msimg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comdlg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\winspool.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\advapi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shell32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comctl32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shlwapi.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uxtheme.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\windowscodecs.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uuid.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\atls.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ole32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleaut32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oledlg.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\urlmon.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdiplus.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\comsuppwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcpmtd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\LIBCMT.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\OLDNAMES.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ws2_32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\mswsock.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleacc.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\propsys.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\Imm32.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\WinMM.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msxml6.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libvcruntimed.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x86\libucrtd.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\packet.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\Delayimp.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\nafxcwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcmtd.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\kernel32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\user32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msimg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comdlg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\winspool.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\advapi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shell32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comctl32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shlwapi.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uxtheme.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\windowscodecs.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uuid.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\atls.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ole32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleaut32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oledlg.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\urlmon.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdiplus.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\comsuppwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcpmtd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\LIBCMT.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\OLDNAMES.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ws2_32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\mswsock.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleacc.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\propsys.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\Imm32.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\WinMM.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msxml6.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libvcruntimed.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x86\libucrtd.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\packet.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\Delayimp.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\nafxcwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcmtd.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\kernel32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\user32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msimg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comdlg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\winspool.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\advapi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shell32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comctl32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shlwapi.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uxtheme.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\windowscodecs.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uuid.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\atls.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ole32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleaut32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oledlg.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\urlmon.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdiplus.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\comsuppwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcpmtd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\LIBCMT.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\OLDNAMES.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ws2_32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\mswsock.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleacc.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\propsys.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\Imm32.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\WinMM.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msxml6.lib 검색 중:
+  
+  라이브러리가 검색되었습니다.
+LINK : warning LNK4098: 'LIBCMT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
+  
+  라이브러리를 검색하고 있습니다.
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\packet.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\Delayimp.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\nafxcwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcmtd.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\kernel32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\user32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msimg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comdlg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\winspool.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\advapi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shell32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comctl32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shlwapi.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uxtheme.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\windowscodecs.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uuid.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\atls.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ole32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleaut32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oledlg.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\urlmon.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdiplus.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\comsuppwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcpmtd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\LIBCMT.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\OLDNAMES.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ws2_32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\mswsock.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleacc.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\propsys.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\Imm32.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\WinMM.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msxml6.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libvcruntimed.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x86\libucrtd.lib 검색 중:
+  
+  라이브러리가 검색되었습니다.
+  
+  라이브러리를 검색하고 있습니다.
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\packet.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\Delayimp.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\nafxcwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcmtd.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\kernel32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\user32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msimg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comdlg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\winspool.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\advapi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shell32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comctl32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shlwapi.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uxtheme.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\windowscodecs.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uuid.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\atls.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ole32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleaut32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oledlg.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\urlmon.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdiplus.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\comsuppwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcpmtd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\LIBCMT.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\OLDNAMES.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ws2_32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\mswsock.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleacc.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\propsys.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\Imm32.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\WinMM.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msxml6.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libvcruntimed.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x86\libucrtd.lib 검색 중:
+  
+  라이브러리가 검색되었습니다.
+  
+  라이브러리를 검색하고 있습니다.
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\wpcap.lib 검색 중:
+      C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib\packet.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\Delayimp.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\nafxcwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcmtd.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\kernel32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\user32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msimg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comdlg32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\winspool.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\advapi32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shell32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\comctl32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\shlwapi.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uxtheme.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\windowscodecs.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\uuid.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\atlmfc\lib\x86\atls.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ole32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleaut32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oledlg.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\urlmon.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\gdiplus.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\comsuppwd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libcpmtd.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\LIBCMT.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\OLDNAMES.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\ws2_32.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\mswsock.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\oleacc.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\propsys.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\Imm32.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\WinMM.Lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x86\msxml6.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\lib\x86\libvcruntimed.lib 검색 중:
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x86\libucrtd.lib 검색 중:
+  
+  라이브러리가 검색되었습니다.
   ipc2023.vcxproj -> E:\MFC_ChattingProgram\Debug\ipc2023.exe

@@ -77,13 +77,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>F:\chatting_application_folder\Driver_Folder\WpdPack\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\chatting_application_folder\Driver_Folder\WpdPack\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Include</IncludePath>
-    <LibraryPath>C:\Users\김도현\Desktop\WpdPack_4_1_2\WpdPack\Lib</LibraryPath>
+    <IncludePath>F:\chatting_application_folder\Driver_Folder\WpdPack\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\chatting_application_folder\Driver_Folder\WpdPack\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
