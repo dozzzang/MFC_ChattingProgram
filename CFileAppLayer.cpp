@@ -45,13 +45,19 @@ void CFileAppLayer::SetFilepath(CString Path) {
 void CFileAppLayer::SetProgressCtrl(CProgressCtrl* p) {
     p_Progress = p;
 }
-UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {        
+UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {    
     /*Thread Begin
       @param Fileobj
       @return 1 (for successful quit)*/
     CFileAppLayer* FApplayer = (CFileAppLayer*)Fileobj;
     HANDLE hFile;
     DWORD dwWrite = 0, dwRead;
+
+    const TCHAR* filePart = PathFindFileName(FApplayer->FilePath);
+    int copyLength = min(strlen(filePart), sizeof(FApplayer->filename) - 1);
+    // 멀티바이트 이므로 ANSI 환경
+    strncpy_s((char*)FApplayer->filename, sizeof(FApplayer->filename),filePart, copyLength);
+    FApplayer->filename[copyLength] = '\0';
 
     hFile = CreateFile(TEXT(FApplayer->FilePath), GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_READONLY, NULL);
 
@@ -63,15 +69,20 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
     if (FApplayer->p_Progress) {
         FApplayer->p_Progress->SetRange(0, dwFileSize / FAPP_DATA_SIZE); //오류발생~~! 근데 실행은 잘 되는데?
     }
+    //가장 처음은 파일명 전송 (receive)
+    FApplayer->bSEND = FALSE;
+    FApplayer->m_sHeader.fapp_totlen = (unsigned long)dwFileSize;
+    FApplayer->m_sHeader.fapp_type = DATA_TYPE_BEGIN;
+    FApplayer->m_sHeader.fapp_seq_num = 0;
+    FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->filename), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
+    FApplayer->p_Progress->SetPos(dwFileSize / FAPP_DATA_SIZE); // 송신 과정 6
 
     if (dwFileSize <= FAPP_DATA_SIZE) {
-        FApplayer->m_sHeader.fapp_totlen = (unsigned long)dwFileSize;
-        FApplayer->m_sHeader.fapp_type = DATA_TYPE_BEGIN;
-        FApplayer->m_sHeader.fapp_seq_num = 0;
+        FApplayer->m_sHeader.fapp_type = DATA_TYPE_CONT;
+        FApplayer->m_sHeader.fapp_seq_num = 1;
         ReadFile(hFile, FApplayer->m_sHeader.fapp_data, dwFileSize, &dwWrite, NULL);
         if (dwWrite != FAPP_DATA_SIZE)
             return -1;
-        FApplayer->p_Progress->SetPos(dwFileSize / FAPP_DATA_SIZE); // 송신 과정 6
        //real send
        FApplayer->bSEND = FALSE;
        FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->m_sHeader), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
@@ -87,7 +98,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
     DWORD dwWrite = 0, dwRead;
     DWORD total_size = Filesize;
     DWORD sent_size = 0;
-    unsigned long seq = 0; 
+    unsigned long seq = 1; 
     unsigned char buffer[FAPP_DATA_SIZE];  
 
     while (sent_size < total_size) {
@@ -95,13 +106,10 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
         DWORD dwToRead = min(FAPP_DATA_SIZE, total_size - sent_size);
 
             if (ReadFile(hfile, buffer, dwToRead, &dwWrite, NULL) && dwWrite > 0) {
-                FileApplayer->m_sHeader.fapp_totlen = (unsigned long)total_size;
 
-                if (sent_size == 0)
-                    FileApplayer->m_sHeader.fapp_type = DATA_TYPE_BEGIN;    //set 0x00
-                else if (sent_size + dwWrite == Filesize)
-                    FileApplayer->m_sHeader.fapp_type = DATA_TYPE_END;      //set 0x01
-                else
+                if (sent_size + dwWrite == Filesize)
+                    FileApplayer->m_sHeader.fapp_type = DATA_TYPE_END;      //set 0x03
+                else if(sent_size == 0)
                     FileApplayer->m_sHeader.fapp_type = DATA_TYPE_CONT;     //set 0x02
 
                 FileApplayer->m_sHeader.fapp_seq_num = seq++;               //set seq_num

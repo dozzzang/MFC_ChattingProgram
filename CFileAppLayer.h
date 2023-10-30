@@ -4,7 +4,6 @@
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-
 #include "BaseLayer.h"
 #include <iostream>
 #include <fstream>
@@ -14,7 +13,6 @@
 class CFileAppLayer 
     : public CBaseLayer
 {   
-
     CString FilePath;
     CFile WriteFile;
     CProgressCtrl* p_Progress;
@@ -28,6 +26,7 @@ private:
 public:
     CFileAppLayer(char* pName);
     virtual ~CFileAppLayer();
+    unsigned char filename[512];
 
     typedef struct _FILE_APP
     {
