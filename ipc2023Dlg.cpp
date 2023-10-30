@@ -517,7 +517,7 @@ void Cipc2023Dlg::OnBnClickedButtonAddfile()
 void Cipc2023Dlg::OnClickedButtonSendfile()
 {
 	//begin Thread
-	AfxBeginThread(m_File->F_Send, m_File);
+	AfxBeginThread(m_File->F_Sendthr, m_File);
 }
 
 

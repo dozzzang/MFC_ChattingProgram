@@ -43,7 +43,7 @@ public:
     BOOL Send(unsigned char* frame, int size);
     BOOL Receive(unsigned char* ppayload);
     void SetFilepath(CString Path);
-    static UINT     F_Send(LPVOID Filepath);
+    static UINT     F_Sendthr(LPVOID Filepath);
     void            SetProgressCtrl(CProgressCtrl* p);
     static BOOL DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile,DWORD Filesize);
     static UINT		FileThread(LPVOID pParam);

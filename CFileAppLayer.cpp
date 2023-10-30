@@ -45,8 +45,8 @@ void CFileAppLayer::SetFilepath(CString Path) {
 void CFileAppLayer::SetProgressCtrl(CProgressCtrl* p) {
     p_Progress = p;
 }
-UINT CFileAppLayer::F_Send(LPVOID Fileobj) {            //file name?
-    /*Perform file preprocessing before being passed to the layer
+UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {        
+    /*Thread Begin
       @param Fileobj
       @return 1 (for successful quit)*/
     CFileAppLayer* FApplayer = (CFileAppLayer*)Fileobj;
@@ -61,7 +61,7 @@ UINT CFileAppLayer::F_Send(LPVOID Fileobj) {            //file name?
     DWORD dwFileSize = GetFileSize(hFile, NULL);
 
     if (FApplayer->p_Progress) {
-        FApplayer->p_Progress->SetRange(0, dwFileSize / FAPP_DATA_SIZE); //오류발생~~!
+        FApplayer->p_Progress->SetRange(0, dwFileSize / FAPP_DATA_SIZE); //오류발생~~! 근데 실행은 잘 되는데?
     }
 
     if (dwFileSize <= FAPP_DATA_SIZE) {
@@ -127,8 +127,8 @@ BOOL CFileAppLayer::Send(unsigned char* frame, int size) {
     return bSEND;
 }
 
-BOOL CFileAppLayer::Receive(unsigned char* ppayload) {
-        LPFILE_APP payload = (LPFILE_APP)ppayload;
+BOOL CFileAppLayer::Receive(unsigned char* frame) {
+        LPFILE_APP payload = (LPFILE_APP)frame;
 
         static HANDLE hFile = INVALID_HANDLE_VALUE;
 
