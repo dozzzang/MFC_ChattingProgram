@@ -99,7 +99,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
     DWORD dwWrite = 0, dwRead;
     DWORD total_size = Filesize;
     DWORD sent_size = 0;
-    unsigned long seq = 1; 
+    unsigned long seq = 1;  
     unsigned char buffer[FAPP_DATA_SIZE];  
 
     while (sent_size < total_size) {
