@@ -36,8 +36,8 @@
 								  sizeof(unsigned char) * 2	)
 #define APP_DATA_SIZE			1496
 
-#define CHAT_TYPE 0x2080
-#define FILE_TYPE 0x2090
+#define CHAT_TYPE 0x8020
+#define FILE_TYPE 0x9020
 
 #define FAPP_DATA_SIZE          1488
 
