@@ -46,6 +46,11 @@ public:
     void            SetProgressCtrl(CProgressCtrl* p);
     static BOOL DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile,DWORD Filesize);
     static UINT		FileThread(LPVOID pParam);
+    // Used for indicating message type.
+    enum : unsigned short {
+        CHAT_MESSAGE_NORMAL,
+        CHAT_MESSAGE_BROADCAST
+    };
 protected:
     FILE_APP		m_sHeader;
     enum {
@@ -53,5 +58,6 @@ protected:
         DATA_TYPE_CONT = 0x01,
         DATA_TYPE_END = 0x02
     };
+
 };
 #endif // !defined(AFX_FILELAYER_H__D67222B3_1B00_4C77_84A4_CEF6D572E181__INCLUDED_)

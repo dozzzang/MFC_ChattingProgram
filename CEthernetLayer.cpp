@@ -64,6 +64,7 @@ BOOL CEthernetLayer::Send(unsigned char* ppayload, int nlength, unsigned short t
 
 BOOL CEthernetLayer::Receive(unsigned char* ppayload)
 {
+
 	PETHERNET_HEADER pFrame = (PETHERNET_HEADER)ppayload;
 
 	BOOL bSuccess = FALSE;
@@ -92,6 +93,16 @@ BOOL CEthernetLayer::Receive(unsigned char* ppayload)
 
 		bSuccess = GetUpperLayer(0)->Receive(pFrame->enet_data);
 	}
+	if (pFrame->enet_type == FILE_TYPE)
+	{
+		if (IsBroadcast(pFrame->enet_dstaddr))
+		{
+			((CFileAppLayer::LPFILE_APP)pFrame->enet_data)->fapp_type = CFileAppLayer::CHAT_MESSAGE_BROADCAST;
+		}
+
+		bSuccess = GetUpperLayer(1)->Receive(pFrame->enet_data);
+	}
+			
 
 	return bSuccess;
 }
