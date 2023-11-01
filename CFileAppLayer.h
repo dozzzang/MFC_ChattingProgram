@@ -40,7 +40,7 @@ public:
 
 
     BOOL Send(unsigned char* frame, int size);
-    BOOL Receive(unsigned char* ppayload);
+    BOOL Receive(unsigned char* frame);
     void SetFilepath(CString Path);
     static UINT     F_Sendthr(LPVOID Filepath);
     void            SetProgressCtrl(CProgressCtrl* p);

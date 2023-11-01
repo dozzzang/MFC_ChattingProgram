@@ -61,7 +61,7 @@ BOOL CNILayer::GetMacAddress(char* deviceName, CNILayer::PhysicalAddress* outAdd
     PPACKET_OID_DATA oidData = (PPACKET_OID_DATA)malloc(sizeof(PACKET_OID_DATA) + 6);
     if (oidData == nullptr)
     {
-       
+
         return false;
     }
 
