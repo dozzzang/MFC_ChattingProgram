@@ -143,11 +143,9 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
         LPFILE_APP payload = (LPFILE_APP)frame;
 
         static HANDLE hFile = INVALID_HANDLE_VALUE;
-
+        CStringA file_name((const char*)payload->fapp_data);
         if (payload->fapp_type == DATA_TYPE_BEGIN) {
-            CString file_name;
-            file_name.Format(_T("%s"), payload->fapp_data); 
-            hFile = CreateFile(file_name, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+            hFile = CreateFile(file_name.GetString(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
             if (hFile == INVALID_HANDLE_VALUE) {
                 // 파일을 열 수 없다면 에러 메시지를 출력하고 함수를 종료한다.
                 AfxMessageBox(_T("File can't be opend"));
