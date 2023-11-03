@@ -84,6 +84,7 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
             return -1;
        //real send
        FApplayer->bSEND = FALSE;
+       FApplayer->m_sHeader.fapp_totlen = dwFileSize; //추가코드
        FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->m_sHeader), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
        Sleep(30);
     }
@@ -104,7 +105,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
     while (sent_size < total_size) {
 
         DWORD dwToRead = min(FAPP_DATA_SIZE, total_size - sent_size);
-
+        FileApplayer->m_sHeader.fapp_totlen = dwToRead; //추가 코드
             if (ReadFile(hfile, buffer, dwToRead, &dwWrite, NULL) && dwWrite > 0) {
 
                 if (sent_size + dwWrite == Filesize)
@@ -143,7 +144,8 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
         LPFILE_APP payload = (LPFILE_APP)frame;
 
         static HANDLE hFile = INVALID_HANDLE_VALUE;
-        CStringA file_name((const char*)payload->fapp_data);
+        CString file_name((const char*)payload->fapp_data);
+        file_name.Format((_T("%s")), payload->fapp_data);
         if (payload->fapp_type == DATA_TYPE_BEGIN) {
             hFile = CreateFile(file_name.GetString(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
             if (hFile == INVALID_HANDLE_VALUE) {
@@ -186,7 +188,7 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
                   return FALSE;
               }
               DWORD dwWritten;
-              ::WriteFile(hFile, payload->fapp_data,FAPP_DATA_SIZE, &dwWritten, NULL); //이 부분 어떻게 해결하지 binary data니,멤버 변수 새로 도입하는 수 밖에?
+              ::WriteFile(hFile, payload->fapp_data,payload->fapp_totlen, &dwWritten, NULL); //overflow 문제 수정
 
               if (payload->fapp_type == DATA_TYPE_END) {
                   CloseHandle(hFile);
