@@ -110,7 +110,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
 
                 if (sent_size + dwWrite == Filesize)
                     FileApplayer->m_sHeader.fapp_type = DATA_TYPE_END;      //set 0x03
-                else if(sent_size == 0)
+                else //modify!!
                     FileApplayer->m_sHeader.fapp_type = DATA_TYPE_CONT;     //set 0x02
 
                 FileApplayer->m_sHeader.fapp_seq_num = seq++;               //set seq_num
@@ -192,7 +192,7 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
                    return FALSE;
                 }
               LARGE_INTEGER liPos;
-              liPos.QuadPart = payload->fapp_seq_num * FAPP_DATA_SIZE;
+              liPos.QuadPart = payload->fapp_seq_num * payload->fapp_totlen; //modify
               SetFilePointerEx(hFile, liPos, NULL, FILE_BEGIN);
               if (!SetFilePointerEx(hFile, liPos, NULL, FILE_BEGIN)) {
                   AfxMessageBox(_T("Failed to set file pointer"));
