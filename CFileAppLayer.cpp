@@ -84,7 +84,7 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
             return -1;
        //real send
        FApplayer->bSEND = FALSE;
-       FApplayer->m_sHeader.fapp_totlen = dwFileSize; //추가코드
+       FApplayer->m_sHeader.fapp_totlen = dwFileSize; //modify
        FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->m_sHeader), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
        Sleep(30);
     }
@@ -105,7 +105,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
     while (sent_size < total_size) {
 
         DWORD dwToRead = min(FAPP_DATA_SIZE, total_size - sent_size);
-        FileApplayer->m_sHeader.fapp_totlen = dwToRead; //추가 코드
+        
             if (ReadFile(hfile, buffer, dwToRead, &dwWrite, NULL) && dwWrite > 0) {
 
                 if (sent_size + dwWrite == Filesize)
@@ -115,6 +115,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
 
                 FileApplayer->m_sHeader.fapp_seq_num = seq++;               //set seq_num
                 memcpy(FileApplayer->m_sHeader.fapp_data, buffer, dwWrite); //set data
+                FileApplayer->m_sHeader.fapp_totlen = dwWrite; //modify
                 //real send
                 FileApplayer->bSEND = FALSE;
                 FileApplayer->bSEND = FileApplayer->Send((unsigned char*)&(FileApplayer->m_sHeader), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
@@ -144,18 +145,23 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
         LPFILE_APP payload = (LPFILE_APP)frame;
 
         static HANDLE hFile = INVALID_HANDLE_VALUE;
-        CString file_name((const char*)payload->fapp_data);
-        file_name.Format((_T("%s")), payload->fapp_data);
-        if (payload->fapp_type == DATA_TYPE_BEGIN) {
+        static unsigned long expected_seq_num = 0; // modify
+
+
+        if (payload->fapp_type == DATA_TYPE_BEGIN) {    //modify
+            CString file_name((const char*)payload->fapp_data);
+            file_name.Format((_T("%s")), payload->fapp_data);
             hFile = CreateFile(file_name.GetString(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
             if (hFile == INVALID_HANDLE_VALUE) {
                 // 파일을 열 수 없다면 에러 메시지를 출력하고 함수를 종료한다.
                 AfxMessageBox(_T("File can't be opend"));
                 return FALSE;
             }
+
             //파일 포인터를 이용한 크기 설정
             LARGE_INTEGER liSize;
             liSize.QuadPart = payload->fapp_totlen;
+
             if (!SetFilePointerEx(hFile, liSize, NULL, FILE_BEGIN)) {
                 AfxMessageBox(_T("Failed to set file pointer"));
                 CloseHandle(hFile);
@@ -168,6 +174,7 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
                 hFile = INVALID_HANDLE_VALUE;
                 return FALSE;
             }
+
             //file pointer initialize
             liSize.QuadPart = 0;
             if (!SetFilePointerEx(hFile, liSize, NULL, FILE_BEGIN)) {
@@ -176,10 +183,14 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
                 hFile = INVALID_HANDLE_VALUE;
                 return FALSE;
             }
-
+            expected_seq_num = 1; //modify
         }
 
         else {
+               if (payload->fapp_seq_num != expected_seq_num) {
+                   AfxMessageBox(_T("Unexpected sequence number"));
+                   return FALSE;
+                }
               LARGE_INTEGER liPos;
               liPos.QuadPart = payload->fapp_seq_num * FAPP_DATA_SIZE;
               SetFilePointerEx(hFile, liPos, NULL, FILE_BEGIN);
@@ -188,16 +199,15 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
                   return FALSE;
               }
               DWORD dwWritten;
-              ::WriteFile(hFile, payload->fapp_data,payload->fapp_totlen, &dwWritten, NULL); //overflow 문제 수정
+              ::WriteFile(hFile, payload->fapp_data,payload->fapp_totlen, &dwWritten, NULL); //modify
 
               if (payload->fapp_type == DATA_TYPE_END) {
                   CloseHandle(hFile);
                   hFile = INVALID_HANDLE_VALUE;
                   AfxMessageBox(_T("Success!"));
               }
+              expected_seq_num++; //modify
         }
-            
-
             return TRUE;
         }
 
