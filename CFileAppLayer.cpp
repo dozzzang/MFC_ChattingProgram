@@ -77,7 +77,7 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
     FApplayer->p_Progress->SetPos(dwFileSize / FAPP_DATA_SIZE); // 송신과정 6
 
     if (dwFileSize <= FAPP_DATA_SIZE) { //송신과정 2
-        FApplayer->m_sHeader.fapp_type = DATA_TYPE_CONT;
+        FApplayer->m_sHeader.fapp_type = DATA_TYPE_END; //modify
         FApplayer->m_sHeader.fapp_seq_num = 1;
         ReadFile(hFile, FApplayer->m_sHeader.fapp_data, dwFileSize, &dwWrite, NULL);
         if (dwWrite != FAPP_DATA_SIZE)
@@ -133,7 +133,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
 
 BOOL CFileAppLayer::Send(unsigned char* frame, int size) {
      bSEND= FALSE;
-    bSEND = ((CEthernetLayer*)(mp_UnderLayer))->Send((unsigned char*)&m_sHeader, size, FILE_TYPE);
+    bSEND = ((CEthernetLayer*)(mp_UnderLayer))->Send((unsigned char*)&frame, size, FILE_TYPE);
 
     return bSEND;
 }
@@ -192,8 +192,7 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
                    return FALSE;
                 }
               LARGE_INTEGER liPos;
-              liPos.QuadPart = payload->fapp_seq_num * payload->fapp_totlen; //modify
-              SetFilePointerEx(hFile, liPos, NULL, FILE_BEGIN);
+              liPos.QuadPart = (payload->fapp_seq_num - 1) * payload->fapp_totlen; //modify!!!!!!
               if (!SetFilePointerEx(hFile, liPos, NULL, FILE_BEGIN)) {
                   AfxMessageBox(_T("Failed to set file pointer"));
                   return FALSE;
