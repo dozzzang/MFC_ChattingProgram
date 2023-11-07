@@ -71,8 +71,9 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
     FApplayer->m_sHeader.fapp_totlen = (unsigned long)dwFileSize;
     FApplayer->m_sHeader.fapp_type = DATA_TYPE_BEGIN;
     FApplayer->m_sHeader.fapp_seq_num = 0;
-    memcpy(FApplayer->m_sHeader.fapp_data,FApplayer->filename, copyLength); //파일명 못받는 오류해결
-    FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->m_sHeader), 12 + copyLength);
+    //memset(FApplayer->m_sHeader.fapp_data, 0, copyLength + 1);
+    memcpy(FApplayer->m_sHeader.fapp_data,FApplayer->filename, copyLength + 1); //파일명 못받는 오류해결
+    FApplayer->bSEND = FApplayer->Send((unsigned char*)&(FApplayer->m_sHeader), 13 + copyLength);
     Sleep(30);
     FApplayer->p_Progress->SetPos(dwFileSize / FAPP_DATA_SIZE); // 송신과정 6
 
@@ -95,38 +96,39 @@ UINT CFileAppLayer::F_Sendthr(LPVOID Fileobj) {
     CloseHandle(hFile);
     return FApplayer->bSEND;
 }
-BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, DWORD Filesize) {   //Limited to 0x00 0x01 0x02 unlike DoFragmentation_c
+BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer, HANDLE hfile, DWORD Filesize) {
     DWORD dwWrite = 0, dwRead;
     DWORD total_size = Filesize;
     DWORD sent_size = 0;
-    unsigned long seq = 1; 
-    unsigned char buffer[FAPP_DATA_SIZE];  
+    unsigned long seq = 1;
+    int cnt = 0;
+    int remainder = Filesize % FAPP_DATA_SIZE; // 나머지
+    int quot = Filesize / FAPP_DATA_SIZE + (remainder ? 1 : 0); // 몫, 나머지가 있으면 +1
+    unsigned char buffer[99999];
+    ReadFile(hfile, buffer, total_size, &dwRead, NULL); // dwRead는 실제로 읽은 바이트 수
 
-    while (sent_size < total_size) {
+    do {
+        DWORD bytesToSend = (cnt == quot - 1) ? remainder : FAPP_DATA_SIZE; // 마지막 패킷이면 나머지, 아니면 정해진 크기
+        FileApplayer->m_sHeader.fapp_type = (cnt == quot - 1) ? DATA_TYPE_END : DATA_TYPE_CONT; // 마지막이면 DATA_TYPE_END, 아니면 DATA_TYPE_CONT
+        FileApplayer->m_sHeader.fapp_seq_num = seq++;
+        memcpy(FileApplayer->m_sHeader.fapp_data, &buffer[cnt * FAPP_DATA_SIZE], bytesToSend); // 현재 조각 복사
+        FileApplayer->m_sHeader.fapp_totlen = bytesToSend; // 현재 보낼 크기 설정
 
-        DWORD dwToRead = min(FAPP_DATA_SIZE, total_size - sent_size);
-        
-            if (ReadFile(hfile, buffer, dwToRead, &dwWrite, NULL) && dwWrite > 0) {
+        // 실제 전송
+        FileApplayer->bSEND = FileApplayer->Send((unsigned char*)&(FileApplayer->m_sHeader), 12 + bytesToSend);
+        Sleep(30);
 
-                if (sent_size + dwWrite == Filesize)
-                    FileApplayer->m_sHeader.fapp_type = DATA_TYPE_END;      //set 0x03
-                else //modify!!
-                    FileApplayer->m_sHeader.fapp_type = DATA_TYPE_CONT;     //set 0x02
+        // 진행률 업데이트
+        FileApplayer->p_Progress->SetPos(seq);
 
-                FileApplayer->m_sHeader.fapp_seq_num = seq++;               //set seq_num
-                memcpy(FileApplayer->m_sHeader.fapp_data, buffer, dwWrite); //set data
-                FileApplayer->m_sHeader.fapp_totlen = dwWrite; //modify
-                //real send
-                FileApplayer->bSEND = FALSE;
-                FileApplayer->bSEND = FileApplayer->Send((unsigned char*)&(FileApplayer->m_sHeader), 12 + (dwWrite > FAPP_DATA_SIZE ? FAPP_DATA_SIZE : dwWrite));
-                Sleep(30);
-                //continue to work
-                sent_size += dwWrite;
-                FileApplayer->p_Progress->SetPos(seq);  //송신과정 6
-            }
-        }
+        sent_size += bytesToSend; // 전송된 크기 갱신
+        cnt++; // 다음 패킷을 위해 카운트 증가
+
+    } while (cnt < quot);
+
     return FileApplayer->bSEND;
 }
+
 
 
 
@@ -138,75 +140,24 @@ BOOL CFileAppLayer::Send(unsigned char* frame, int size) {
     return bSEND;
 }
 
-BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 첫 번째 조각은 무조건 filename
-                                                    //수신과정 2는 수행될 필요가 없다.
-                                                    //수신과정 3,4에 관해 각각 실행
-                                                    //수신과정 5가 정말 수신과정에서 수행되어야하는 게 맞나?
-        LPFILE_APP payload = (LPFILE_APP)frame;
+BOOL CFileAppLayer::Receive(unsigned char* frame) {
+    LPFILE_APP payload = (LPFILE_APP)frame;
 
-        static HANDLE hFile = INVALID_HANDLE_VALUE;
-        static unsigned long expected_seq_num = 0; // modify
-        
-
-        if (payload->fapp_type == DATA_TYPE_BEGIN) {    //modify
-            CString file_name((const char*)payload->fapp_data);
-            file_name.Format((_T("%s")), payload->fapp_data);
-            hFile = CreateFile(file_name.GetString(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-            if (hFile == INVALID_HANDLE_VALUE) {
-                // 파일을 열 수 없다면 에러 메시지를 출력하고 함수를 종료한다.
-                AfxMessageBox(_T("File can't be opend"));
-                return FALSE;
-            }
-
-            //파일 포인터를 이용한 크기 설정
-            LARGE_INTEGER liSize;
-            liSize.QuadPart = payload->fapp_totlen;
-
-            if (!SetFilePointerEx(hFile, liSize, NULL, FILE_BEGIN)) {
-                AfxMessageBox(_T("Failed to set file pointer"));
-                CloseHandle(hFile);
-                hFile = INVALID_HANDLE_VALUE;
-                return FALSE;
-            }
-            if (!SetEndOfFile(hFile)) {
-                AfxMessageBox(_T("Failed to set end of file"));
-                CloseHandle(hFile);
-                hFile = INVALID_HANDLE_VALUE;
-                return FALSE;
-            }
-
-            //file pointer initialize
-            liSize.QuadPart = 0;
-            if (!SetFilePointerEx(hFile, liSize, NULL, FILE_BEGIN)) {
-                AfxMessageBox(_T("Failed to reset file pointer"));
-                CloseHandle(hFile);
-                hFile = INVALID_HANDLE_VALUE;
-                return FALSE;
-            }
-            ++expected_seq_num;
+    if (payload->fapp_type == DATA_TYPE_BEGIN) {
+        CString file_name;
+        file_name.Format(_T("%s"), payload->fapp_data);
+        WriteFile.Open(file_name, CFile::modeCreate | CFile::modeWrite);
+        WriteFile.SetLength(payload->fapp_totlen);
+    }
+    else {
+        WriteFile.Seek((payload->fapp_seq_num - 1) * FAPP_DATA_SIZE, CFile::begin);
+        WriteFile.Write(payload->fapp_data, payload->fapp_totlen);
+        if (payload->fapp_type == DATA_TYPE_END) {
+            WriteFile.Close();
+            AfxMessageBox(_T("Success"));
         }
-        
-        else {
-               if (payload->fapp_seq_num != expected_seq_num) {
-                   AfxMessageBox(_T("Unexpected sequence number"));
-                   return FALSE;
-                }
-              LARGE_INTEGER liPos;
-              liPos.QuadPart = (payload->fapp_seq_num - 1) * payload->fapp_totlen; //modify!!!!!!
-              if (!SetFilePointerEx(hFile, liPos, NULL, FILE_BEGIN)) {
-                  AfxMessageBox(_T("Failed to set file pointer"));
-                  return FALSE;
-              }
-              DWORD dwWritten;
-              ::WriteFile(hFile, payload->fapp_data,payload->fapp_totlen, &dwWritten, NULL); //modify
+    }
+    return TRUE;
+}
 
-              if (payload->fapp_type == DATA_TYPE_END) {
-                  CloseHandle(hFile);
-                  hFile = INVALID_HANDLE_VALUE;
-                  AfxMessageBox(_T("Success!"));
-              }
-              expected_seq_num++; //modify
-        }
-            return TRUE;
-        }
 
