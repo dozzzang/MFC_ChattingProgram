@@ -133,7 +133,7 @@ BOOL CFileAppLayer::DoFragmentation_f(CFileAppLayer* FileApplayer,HANDLE hfile, 
 
 BOOL CFileAppLayer::Send(unsigned char* frame, int size) {
      bSEND= FALSE;
-    bSEND = ((CEthernetLayer*)(mp_UnderLayer))->Send((unsigned char*)&frame, size, FILE_TYPE);
+    bSEND = ((CEthernetLayer*)(mp_UnderLayer))->Send(frame, size, FILE_TYPE);
 
     return bSEND;
 }
@@ -146,7 +146,7 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
 
         static HANDLE hFile = INVALID_HANDLE_VALUE;
         static unsigned long expected_seq_num = 0; // modify
-
+        
 
         if (payload->fapp_type == DATA_TYPE_BEGIN) {    //modify
             CString file_name((const char*)payload->fapp_data);
@@ -183,9 +183,9 @@ BOOL CFileAppLayer::Receive(unsigned char* frame) { //수신과정 1에 대해 �
                 hFile = INVALID_HANDLE_VALUE;
                 return FALSE;
             }
-            expected_seq_num = 1; //modify
+            ++expected_seq_num;
         }
-
+        
         else {
                if (payload->fapp_seq_num != expected_seq_num) {
                    AfxMessageBox(_T("Unexpected sequence number"));
